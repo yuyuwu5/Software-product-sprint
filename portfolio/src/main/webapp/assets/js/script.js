@@ -27,7 +27,14 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 function getRandomGreeting(){
-    fetch('/data').then(response => response.json()).then((greeting) => {
+    fetch('/quote').then(response => response.json()).then((greeting) => {
     document.getElementById('greeting-container').innerText = greeting[Math.floor(Math.random() * greeting.length)];
   });
 }
+function getComment(){
+    fetch('/comment').then(response => response.json()).then((greeting) => {
+    document.getElementById('all-comment').innerText = greeting;
+  });
+}
+
+
