@@ -31,10 +31,19 @@ function getRandomGreeting(){
     document.getElementById('greeting-container').innerText = greeting[Math.floor(Math.random() * greeting.length)];
   });
 }
+function makeTable(in_w){
+    var out="<table><thead><tr><th>Comment</th></tr></thead><tbody>";
+    for(var i in in_w){
+        out+="<tr><td>";
+        out+=in_w[i];
+        out+="</td></tr>";
+    }
+    out += "</tbody></table>";
+    return out;	
+}
 function getComment(){
-    fetch('/comment').then(response => response.json()).then((greeting) => {
-    document.getElementById('all-comment').innerText = greeting;
-  });
+    
+    fetch('/comment').then(response => response.json()).then(makeTable).then((greeting) => {document.getElementById('all-comment').innerHTML = greeting;});
 }
 
 

@@ -44,6 +44,7 @@ public class commentServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("text");
       comments.add(comment);
+
     }
 
     String json = convertToJsonUsingGson(comments);
