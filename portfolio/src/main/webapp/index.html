@@ -1,18 +1,227 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
-  </body>
+	<head>
+		<title>Yuyu Wu's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.png" alt="" /></a>
+					<h1><strong>Yuyu Wu</strong> <br/></h1>
+                    <h3>
+                    National Taiwan University<br/>
+					Department of Computer Science and Information Engineering<br />
+                    </h3>
+                    <h4> 2017 - Now </h4>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2> The Sky Is The Limit</h2>
+						</header>
+						<p>
+                            Ambitious and dedicated CS majored student who seeks to make things great.  <br/>
+                            To be stronger, braver, but stay empathetic to others, I hope I can help more people.  <br/>
+                            Learn more, read more, study more, I will always stay hungry for new things.  <br/>
+                            Go to more places, meet more people, listen to more stories, the experience will help me to grow.  <br/>
+                            I want to go further, for far is never far enough.  <br/>     
+                        </p>
+                        <div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images/fulls/no_one.jpg" alt="" /></span></div>
+								</div>
+						</div>
+                        <ul class="actions">
+							<li><a onclick="getRandomGreeting()" class="button">Quote</a></li>
+						</ul>
+                        <div id='greeting-container'></div>
+						
+					</section>
+
+				<!-- Two -->
+					<section id="two">
+						<h2>Honor and Activity</h2>
+						<div class="row">
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/io.jpg" class="image fit thumb"><img src="images/fulls/io.jpg" alt="" /></a>
+								<h3>Code Jam tto I/O for women 2019</h3>
+								<p><strong> Coding Challenge for women across the world. 101th place.(4th place in Taiwan)</strong><br/>Winning free tickets and reimbursement to offset travel expenses to Google I/O 2019</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/ghc.jpg" class="image fit thumb"><img src="images/fulls/ghc.jpg" alt="" /></a>
+								<h3>Google GHC 2019 travel scholarship Winner</h3>
+								<p>
+                                    <strong> World’s largest gathering of women in computing </strong><br/>
+                                    To Orlando on October 1 to 5, 2019 for Grace Hopper Conference</p>
+							</article>
+							
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/hack.jpg" class="image fit thumb"><img src="images/fulls/hack.jpg" alt="" /></a>
+								<h3>NASA Hackthon</h3>
+								<p>
+                                    <strong>Space Apps introduces problem-solvers worldwide to NASA’s free and open data.</strong><br/>
+                                    Three days hackathon for brain-storming. 
+                                    Design an online game in javascript to introduce space debris and make people
+have fun.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/kyu.jpg" class="image fit thumb"><img src="images/fulls/kyu.jpg" alt="" /></a>
+								<h3>Ntu-kyutech International Study Group Project</h3>
+								<p>Changing opinions and share idea about technology with Japanese students.</p>
+							</article>
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/camp.jpg" class="image fit thumb"><img src="images/fulls/camp.jpg" alt="" /></a>
+								<h3>NTU Computer Science Summer Camp</h3>
+								<p>Shared CS knowledge and my passion with high school students.</p>
+							</article>
+                            <article class="col-6 col-12-xsmall work-item">
+								<a href="images/fulls/meetup.jpg" class="image fit thumb"><img src="images/fulls/meetup.jpg" alt="" /></a>
+								<h3>Women Techmaker Meetup May 6th Sunnyvale, CA, 2019</h3>
+								<p>A Techmakers program which provides visibility, community, and resources for women in technology.</p>
+							</article>
+						</div>
+						<ul class="actions">
+							<li><a href="#" class="button">Back to top</a></li>
+						</ul>
+					</section>					
+
+                    <section id="three">
+                        <h2>Academic Achievement</h2>
+                        <div class="col-6 col-12-xsmall">		
+							<ul>
+								<li><h3>Dean’s list Award</h3></li>
+                                <blockquote>In recognition of outstanding academic achievement during the 1st semester 2019-2020 at the Depart-
+ment of Computer Science and Information Engineering</blockquote>
+								<li><h3>Chinese Word Net Sense Tagger Research Assistant</h3></li>
+								<blockquote>Automatic sense tagging project using machine learning technique and Chinese Word Net at Graduate
+Institute of Linguistics. It is also a project from Ministry of Science and Technology</blockquote>
+                                <li><h3>Student Research Scholarship</h3></li>
+                                <blockquote>A scholarship supported by Ministry of Science and Technology to do research on time series related
+field.</blockquote>
+							</ul>				
+						</div>
+                        <ul class="actions">
+							<li><a href="#" class="button">Back to top</a></li>
+						</ul>
+                    </section>
+				<!-- Four -->
+                    <section id="four">
+                        <h2>Work Experience</h2>
+                        <div class="col-6 col-12-xsmall">		
+							<ul>
+								<li><h3>Google Taiwan, Software Engineer Practicum Intern</h3></li>
+                                On-site internship under this leading construction company.<br />
+                                     In Pixel phone department and help Pixel
+test suite items (PTS) development in stability, bootloader and security.
+                                <h5> Android 10 Release Celebration</h5>
+                                <div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-3"><span class="image fit"><img src="images/fulls/ad10-1.jpg" alt="" /></span></div>
+									<div class="col-3"><span class="image fit"><img src="images/fulls/ad10.jpg" alt="" /></span></div>
+									<div class="col-3"><span class="image fit"><img src="images/fulls/ad10-2.jpg" alt="" /></span></div>
+									<div class="col-3"><span class="image fit"><img src="images/fulls/ad10-3.jpg" alt="" /></span></div>
+								</div>
+							    </div>
+                                <li><h3>NTU COOL, System Administration Intern</h3></li>
+                                    <p><span class="image right"><img src="images/fulls/cool.png" alt="" /></span>
+                                    NTU cool is an university teaching platform for all student in NTU.
+                                    I help NTU Cool develop function and help maintain system for university students. 
+                                    <ol>
+                                        <li>Build automatically update script to help updating NTU cool system and reduce downtime</li>
+                                        <li>Build slack chat bot to message user real time system loading on Grafana server</li>
+                                    </ol>
+                                    </p>
+
+                            </ul>
+                        </div>
+                        <ul class="actions">
+							<li><a href="#" class="button">Back to top</a></li>
+						</ul>
+                    </section>
+					<section id="five">
+                        <h2>Hobby</h2>
+                        I like outdoor activities.<br />
+                        I go jogging or biking almost every day. If it doesn't rain : ) <br /> 
+                        At school, I join table tennis team and girl's volleyball team. <br />
+                        In summer, I also like to go swimming.<br />
+                        When I have free time or go on a vacation, I like to go hiking.<br />
+                        Walking into nature makes me feel relax, I feel alive and release when being in the wild.
+                        <h5>Photograph</h5>
+                        <div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-6"><span class="image fit"><img src="images/fulls/pingpong.jpg" alt="" /></span></div>
+								<div class="col-6"><span class="image fit"><img src="images/fulls/volley.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/fulls/img/4.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/fulls/img/5.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/fulls/img/6.jpg" alt="" /></span></div>
+                                <div class="col-6"><span class="image fit"><img src="images/fulls/img/3.jpg" alt="" /></span></div>
+                                <div class="col-6"><span class="image fit"><img src="images/fulls/img/7.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/fulls/img/2.jpg" alt="" /></span></div>
+                                <div class="col-4"><span class="image fit"><img src="images/fulls/img/1.jpg" alt="" /></span></div>
+                                <div class="col-4"><span class="image fit"><img src="images/fulls/sky_all.jpg" alt="" /></span></div>
+
+                            </div>
+						</div>
+
+					</section>
+
+					<section id="six">
+						<h2>Contact Me</h2>
+							<h4>Comment</h4>
+							<form method="POST" action="/comment">
+								<div class="row gtr-uniform gtr-50">	
+									<div class="col-12">
+										<textarea name="text-input" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+										<input type="submit" value="Send Message" class="primary" />
+									</div>
+								</div>
+							</form>
+                        <ul class="actions">
+							<li><a onclick="getComment()" class="button">Show All Comments</a></li>
+						</ul>
+                        <div id='all-comment'></div>
+					</section>
+
+				
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://github.com/yuyuwu5" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="b06902104@csie.ntu.edu.tw" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+            <script src="assets/js/script.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>

@@ -32,28 +32,47 @@ import com.google.gson.Gson;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/quote")
-public class DataServlet extends HttpServlet {
-private ArrayList<String> quotes = new ArrayList<String>();
-  @Override
-  public void init(){
-    quotes.add("The purpose of our lives is to be happy. -Dalai Lama");
-    quotes.add("Life is what happens when you’re busy making other plans. -John Lennon");
-    quotes.add("Get busy living or get busy dying. -Stephen King");
-    quotes.add("You only live once, but if you do it right, once is enough. -Mae West");
-    quotes.add("Many of life’s failures are people who did not realize how close they were to success when they gave up. -Thomas A. Edison");
-    quotes.add("If you want to live a happy life, tie it to a goal, not to people or things. -Albert Einstein");
-  }
+
+@WebServlet("/comment")
+public class commentServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJsonUsingGson(quotes);
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    ArrayList<String> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      String comment = (String) entity.getProperty("text");
+      comments.add(comment);
+    }
 
-    response.setContentType("application/json;");
+    String json = convertToJsonUsingGson(comments);
+    response.setContentType("text/html;");
     response.getWriter().println(json);
   }
-   private String convertToJsonUsingGson(ArrayList<String> str) {
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String text = getParameter(request, "text-input", "");
+    long timestamp = System.currentTimeMillis();
+
+    Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("text", text);
+    taskEntity.setProperty("timestamp", timestamp);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+    response.sendRedirect("/index.html");
+  }
+
+  private String convertToJsonUsingGson(ArrayList<String> quotes) {
     Gson gson = new Gson();
-    String json = gson.toJson(str);
+    String json = gson.toJson(quotes);
     return json;
+  }
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }
