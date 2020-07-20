@@ -40,14 +40,14 @@ public class NicknameServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       String nickname = getUserNickname(userService.getCurrentUser().getUserId());
-      out.println("<p>Set your nickname here:</p>");
+      out.println("<p>Set your nickname here to leave comments:</p>");
       out.println("<form method=\"POST\" action=\"/nickname\">");
       out.println("<input name=\"nickname\" value=\"" + nickname + "\" />");
       out.println("<br/>");
       out.println("<button>Submit</button>");
       out.println("</form>");
     } else {
-      String loginUrl = userService.createLoginURL("/nickname");
+      String loginUrl = userService.createLoginURL("/login");
       out.println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
     }
   }
@@ -59,14 +59,15 @@ public class NicknameServlet extends HttpServlet {
       response.sendRedirect("/nickname");
       return;
     }
-
     String nickname = request.getParameter("nickname");
     String id = userService.getCurrentUser().getUserId();
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Entity entity = new Entity("UserInfo", id);
     entity.setProperty("id", id);
     entity.setProperty("nickname", nickname);
+    //System.out.println(nickname);
+    //System.out.println(id);
+    //System.out.println("======LL=");
     // The put() function automatically inserts new data or updates existing data based on ID
     datastore.put(entity);
 

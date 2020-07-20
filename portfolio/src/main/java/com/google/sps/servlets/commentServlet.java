@@ -20,6 +20,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import com.google.gson.Gson;
+import com.google.sps.data.Comments;
 
 
 
@@ -40,11 +43,14 @@ public class commentServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    ArrayList<String> comments = new ArrayList<>();
+    ArrayList<Comments> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       String comment = (String) entity.getProperty("text");
-      comments.add(comment);
+      String nickname = (String) entity.getProperty("nickname");
+      //response.getWriter().println(nickname);
 
+      Comments comm = new Comments(nickname, comment);
+      comments.add(comm);
     }
 
     String json = convertToJsonUsingGson(comments);
@@ -55,16 +61,23 @@ public class commentServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = getParameter(request, "text-input", "");
     long timestamp = System.currentTimeMillis();
+    UserService userService = UserServiceFactory.getUserService();
+    String nickname = getUserNickname(userService.getCurrentUser().getUserId());
 
     Entity taskEntity = new Entity("Comment");
     taskEntity.setProperty("text", text);
     taskEntity.setProperty("timestamp", timestamp);
+    taskEntity.setProperty("nickname", nickname);
+    //System.out.println(nickname);
+    //System.out.println(userService.getCurrentUser().getUserId());
+    //System.out.println("=========");
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
     response.sendRedirect("/index.html");
   }
 
-  private String convertToJsonUsingGson(ArrayList<String> quotes) {
+  private String convertToJsonUsingGson(ArrayList<Comments> quotes) {
     Gson gson = new Gson();
     String json = gson.toJson(quotes);
     return json;
@@ -75,5 +88,19 @@ public class commentServlet extends HttpServlet {
       return defaultValue;
     }
     return value;
+  }
+   /** Returns the nickname of the user with id, or null if the user has not set a nickname. */
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+        new Query("UserInfo")
+            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return null;
+    }
+    String nickname = (String) entity.getProperty("nickname");
+    return nickname;
   }
 }

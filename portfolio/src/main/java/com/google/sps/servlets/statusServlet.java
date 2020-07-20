@@ -34,13 +34,32 @@ public class statusServlet extends HttpServlet {
     response.setContentType("text/html");
     PrintWriter out = response.getWriter();
     UserService userService = UserServiceFactory.getUserService();
-    // If user is not logged in, show a login form (could also redirect to a login page)
     String json;
     if (userService.isUserLoggedIn()) {
-      json = "{\"status\":\"Yes\"}";
+      //String nickname = getUserNickname(userService.getCurrentUser().getUserId());
+      //if (nickname == null) {
+      //  System.out.println("redirect");
+      //  response.sendRedirect("/nickname");
+      //}
+      json = "{\"status\":\"Yes\", \"nickname\":\"" + "haha" + "\"}";
     } else {
-      json = "{\"status\":\"No\"}";
+      json = "{\"status\":\"No\", \"nickname\":null}";
     }
+    //out.println("{\"status\":\"Yes\", \"nickname\":null}");
     out.println(json);
+
+  }
+  private String getUserNickname(String id) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query =
+        new Query("UserInfo")
+            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
+    PreparedQuery results = datastore.prepare(query);
+    Entity entity = results.asSingleEntity();
+    if (entity == null) {
+      return null;
+    }
+    String nickname = (String) entity.getProperty("nickname");
+    return nickname;
   }
 }
