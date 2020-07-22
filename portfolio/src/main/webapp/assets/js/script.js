@@ -32,18 +32,30 @@ function getRandomGreeting(){
   });
 }
 function makeTable(in_w){
-    var out="<table><thead><tr><th>Comment</th></tr></thead><tbody>";
+    var out="<table><thead><tr><th>Nickname</th><th>Comment</th></tr></thead><tbody>";
     for(var i in in_w){
-        out+="<tr><td>";
-        out+=in_w[i];
-        out+="</td></tr>";
+        out+="<tr>";
+        out+="<td>" + in_w[i].nickname +"</td>";
+        out+="<td>" + in_w[i].comment +"</td>";
+        out+="</tr>";
     }
-    out += "</tbody></table>";
+    out += "</tbody>";
+    out += "<tfoot><tr><td colspan=\"2\"></td></tr></tfoot>";
+    out += "</table>";
     return out;	
 }
-function getComment(){
-    
+function getComment(){ 
     fetch('/comment').then(response => response.json()).then(makeTable).then((greeting) => {document.getElementById('all-comment').innerHTML = greeting;});
+}
+function userLogIn(){
+    fetch('/status').then(res => res.json()).then(res => {
+        if (res.status === 'No'){
+          document.getElementById('comment-login').innerHTML = "<ul class=\"actions\"><li><a href=\"/login\" class=\"button\">Login to leave comments</a></li></ul>";
+        } else{
+          document.getElementById('comment-login').innerHTML = 
+          `<h4>Comment</h4><form method=\"POST\" action="/comment"><div class="row gtr-uniform gtr-50"><div class="col-12"><textarea name="text-input" id="demo-message" placeholder="Enter your message" rows="6"></textarea><input type="submit" value="Send Message" class="primary" /></div></div></form>`;
+        }
+    });
 }
 
 

@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<body class="is-preload">
+	<body class="is-preload" onload="userLogIn()">
 
 		<!-- Header -->
 			<header id="header">
@@ -181,7 +181,13 @@ test suite items (PTS) development in stability, bootloader and security.
 					</section>
 
 					<section id="six">
-						<h2>Contact Me</h2>
+                        <h2>Contact Me</h2>
+                        <div id='comment-login'></div>
+                        <!--
+
+                        <ul class="actions">
+							<li><a href="/login" class="button">Login to leave comments</a></li>
+						</ul>
 							<h4>Comment</h4>
 							<form method="POST" action="/comment">
 								<div class="row gtr-uniform gtr-50">
@@ -192,9 +198,11 @@ test suite items (PTS) development in stability, bootloader and security.
 									</div>
 								</div>
 							</form>
+                            -->
                         <ul class="actions">
 							<li><a onclick="getComment()" class="button">Show All Comments</a></li>
 						</ul>
+                       
                         <div id='all-comment'></div>
 					</section>
 
